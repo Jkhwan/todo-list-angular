@@ -29,6 +29,12 @@
           <input type="text" class="itemTextbox {{ item.editMode }}" value="{{ item.name }}" ng-model="item.name">
           <i class="fa fa-fw fa-eraser" ng-click="removeItem()"></i
         </li>
+        <li ng-show="addText" class="list-group-item">
+          <!--<i class="fa fa-fw fa-square-o" ng-click="setCompletion()"></i>
+          <i class="fa fa-fw fa-edit {{ item.editMode }}" ng-click="editItem()"></i>-->
+          <span style="margin-left: 30px" class="name {{ item.editMode }}">{{ addText }}</span>
+          <!--<i class="fa fa-fw fa-eraser" ng-click="removeItem()"></i>-->
+        </li>
       </ul>
     </div>
   </div>
