@@ -10,10 +10,24 @@ div.list {
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100%;
 	-o-background-size: 100%;
-	ul#todo {
+
+	div#todo {
 		padding-top: 200px;
 		width: 500px;
 		margin: 0 auto;
+		i.fa-sort-amount-asc {
+			float: right;
+			margin-right: 10px;
+			padding: 2px;
+			width: 28px;
+			height: 28px;
+			border: 1px solid #000;
+			background-color: #FFF;
+			font-size: 20px;
+		}
+		ul {
+			padding-top: 35px;
+		}
 		li {
 			font-size: 25px;
 			height: 50px;
@@ -23,16 +37,31 @@ div.list {
 				text-decoration: line-through;
 				color: red;
 			}
+			span.name.edit {
+				display: none;
+			}
+			input.itemTextbox {
+				display: none;
+				&.edit {
+					display: inline-block;
+					text-align: center;
+					position: relative;
+					top: -4px;
+				}
+			}
 			i.fa-eraser {
 				float: right;
 				color: black;
 			}
-			i.fa-square-o, i.fa-check-square-o {
+			i.fa-square-o, i.fa-check-square-o, i.fa-edit {
 				color: black;
 				float: left;
 				padding-top: 2px;
 				&.mouseover {
 					cursor: pointer;
+				}
+				&.edit {
+					color: red;
 				}
 			}
 		}

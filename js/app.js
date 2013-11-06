@@ -1,13 +1,17 @@
-var todoApp = angular.module("todoApp", []);
+var todoApp = angular.module("todoApp", ['ui.sortable']);
 
 todoApp.controller('todoController', function todoController($scope) {
-	$scope.items = [{ name: 'Photo Gallery', completed: 0}, 
-									{ name: 'To Do List', completed: 0}, 
-									{ name: 'Contacts List', completed: 0}];
-	$scope.icons = "fa fa-fw fa-square-o";
+	$scope.items = [{ name: 'Photo Gallery', status: 'inProgress'}, 
+									{ name: 'To Do List', status: 'inProgress'}, 
+									{ name: 'Contacts List', status: 'inProgress'}];
+
+  $scope.sortableOptions = {
+    //update: function(e, ui) {},
+    axis: 'x'
+  };
 	$scope.saveItem = function() {
 		if($scope.addText != "") {
-			$scope.items.push({name: $scope.addText, completed: 0});
+			$scope.items.push({name: $scope.addText, status: 'inProgress'});
 			$scope.addText = "";
 		}
 	};
@@ -17,35 +21,30 @@ todoApp.controller('todoController', function todoController($scope) {
 			$scope.items.splice(index, 1);
 		}
 	};
-	
+	$scope.editItem = function() {
+		if ($scope.items[this.$index].editMode === "edit")
+			$scope.items[this.$index].editMode = "";
+		else 
+			$scope.items[this.$index].editMode = "edit";
+	};
 	$scope.pickIcon = function() {
 		var index = findIndex(this.item);
 		if (index > -1) {
-			if ($scope.items[index].completed == 0) {
+			if ($scope.items[index].status == 'inProgress') {
 				return "fa fa-fw fa-square-o";
 			} else {
 				return "fa fa-fw fa-check-square-o";
 			}
 		}	
 	};
+	$scope.sortItems = function() {
+
+	}
 	$scope.setCompletion = function() {
-		if (checkCompletion(this.item) === 1)
-			this.item.completed = 0;
+		if (this.item.status === 'inProgress')
+			this.item.status = 'completed';
 		else
-			this.item.completed = 1;
-	};
-	$scope.isCompleted = function() {
-		if (checkCompletion(this.item) === 1)
-			return "completed";
-	};
-	var checkCompletion = function(item) {
-		var index = findIndex(item);
-		if (index > -1) {	
-			if ($scope.items[index].completed == 1)
-				return 1;
-			else
-				return 0;
-		}		
+			this.item.status = 'inProgress';
 	};
 	var findIndex = function(item) {
 		return $scope.items.indexOf(item);
