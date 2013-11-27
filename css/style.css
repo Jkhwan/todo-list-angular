@@ -36,7 +36,10 @@ div.list {
       div.list div#todo li span.name.edit {
         display: none; }
       div.list div#todo li input.itemTextbox {
-        display: none; }
+        display: inline-block;
+          text-align: center;
+          position: relative;
+          top: -4px;  }
         div.list div#todo li input.itemTextbox.edit {
           display: inline-block;
           text-align: center;
